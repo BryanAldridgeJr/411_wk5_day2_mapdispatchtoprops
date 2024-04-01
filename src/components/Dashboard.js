@@ -8,11 +8,21 @@ import {
     TableRow
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-import Chart from './Chart'
-import Total from './Total'
-import AddCar from './AddCar'
- 
+import Chart from '../containers/Chart'
+import Total from '../containers/Total'
+import AddCar from '../containers/AddCar'
+import { removeCar } from '../redux/actions';
+
+
 const Dashboard = (props) => {
+    const { cars, removeCar } = props;
+
+    const handleRemoveCar = (idx) => {
+        removeCar(idx);
+    };
+
+    /*const handleChange = (idx) => { props.removeCar(idx) }*/
+
     return (
         <Container maxWidth="lg" className="car-container">
             <h4>Welcome, {props.user.username}</h4>
@@ -45,6 +55,8 @@ const Dashboard = (props) => {
                         <TableCell>
                             <DeleteIcon
                                 // add onClick method here
+                                /*onClick={handleChange}*/
+                                onClick={() => handleRemoveCar(idx)}
                                 className="icon text-red" />
                         </TableCell>
                     </TableRow>
